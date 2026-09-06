@@ -29,6 +29,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Debug role ARN length
+        run: |
+          echo "Role ARN length: ${#ROLE_ARN}"
+          echo "First 10 chars: ${ROLE_ARN:0:10}"
+        env:
+          ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
